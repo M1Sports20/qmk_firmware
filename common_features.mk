@@ -77,6 +77,12 @@ ifeq ($(strip $(FAUXCLICKY_ENABLE)), yes)
     SRC += $(QUANTUM_DIR)/fauxclicky.c
 endif
 
+ifeq ($(strip $(LUA_ENABLE)), yes)
+    OPT_DEFS += -DLUA_ENABLE -DMAKE_LIB
+    COMMON_VPATH += $(LIB_PATH)/lua
+    SRC += onelua.c
+endif
+
 ifeq ($(strip $(POINTING_DEVICE_ENABLE)), yes)
     OPT_DEFS += -DPOINTING_DEVICE_ENABLE
     OPT_DEFS += -DMOUSE_ENABLE
@@ -133,7 +139,7 @@ else
         # This ensures that the EEPROM page buffer fits into RAM
         USE_PROCESS_STACKSIZE = 0x600
         USE_EXCEPTIONS_STACKSIZE = 0x300
-        
+
         SRC += $(PLATFORM_COMMON_DIR)/eeprom_stm32.c
         SRC += $(PLATFORM_COMMON_DIR)/flash_stm32.c
         OPT_DEFS += -DEEPROM_EMU_STM32F042x6

@@ -88,4 +88,14 @@ __attribute__((weak)) void __cxa_pure_virtual() {
         ;
 }
 
+__attribute__((weak)) int _open_r(struct _reent *r, const char *path, int flag, int m) { return -1; }
+
+__attribute__((weak)) int _gettimeofday_r(struct _reent *r, struct timeval *t, void *tzp) { return -1; }
+
+__attribute__((weak)) int _link_r(struct _reent *r, const char *oldpath, const char *newpath) { return -1; }
+
+__attribute__((weak)) int _unlink_r(struct _reent *r, const char *path) { return -1; }
+
+__attribute__((weak)) clock_t _times_r(struct _reent *r, void *t) { return 0; }
+
 #pragma GCC diagnostic pop
