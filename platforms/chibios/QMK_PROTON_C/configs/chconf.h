@@ -40,7 +40,7 @@
 
 /**
  * @brief   System time counter resolution.
- * @note    Allowed values are 16 or 32 bits.
+ * @note    Allowed values are 16, 32 or 64 bits.
  */
 #if !defined(CH_CFG_ST_RESOLUTION)
 #define CH_CFG_ST_RESOLUTION                32
@@ -453,7 +453,7 @@
  * @note    The default is @p FALSE.
  */
 #if !defined(CH_CFG_USE_FACTORY)
-#define CH_CFG_USE_FACTORY                  TRUE
+#define CH_CFG_USE_FACTORY                  FALSE
 #endif
 
 /**
