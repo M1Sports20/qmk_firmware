@@ -86,7 +86,7 @@ ifeq ($(strip $(POINTING_DEVICE_ENABLE)), yes)
 endif
 
 QUANTUM_PAINTER_ENABLE ?= no
-VALID_QUANTUM_PAINTER_DRIVERS := rgb565_surface qmk_oled_wrapper ili9341 ili9488
+VALID_QUANTUM_PAINTER_DRIVERS := rgb565_surface qmk_oled_wrapper ili9341 ili9488 sh1106
 QUANTUM_PAINTER_DRIVERS ?=
 ifeq ($(strip $(QUANTUM_PAINTER_ENABLE)), yes)
     OPT_DEFS += -DQUANTUM_PAINTER_ENABLE
@@ -127,6 +127,14 @@ ifeq ($(strip $(QUANTUM_PAINTER_ENABLE)), yes)
             SRC += \
                 $(DRIVER_PATH)/painter/ili9xxx_common/qp_ili9xxx.c \
                 $(DRIVER_PATH)/painter/ili9488/qp_ili9488.c
+        else ifeq ($$(strip $$(CURRENT_PAINTER_DRIVER)),sh1106)
+            OPT_DEFS += -DQUANTUM_PAINTER_SH1106_ENABLE
+            QUANTUM_LIB_SRC += spi_master.c
+            COMMON_VPATH += \
+                $(DRIVER_PATH)/painter/ssd_common \
+                $(DRIVER_PATH)/painter/sh1106
+            SRC += \
+                $(DRIVER_PATH)/painter/sh1106/qp_sh1106.c
         else
             $$(error "$$(CURRENT_PAINTER_DRIVER)" is not a valid quantum painter driver)
         endif
